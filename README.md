@@ -14,21 +14,21 @@ Initially, a card must be drawn from the deck of cards and a bet must be made in
   
 ## How to start the Game Server
 
-0. Check out project using `git clone https://github.com/andy489/Cayetano_Cards_Game.git`
+0. Check out project using `git clone https://github.com/andy489/Guess_Card_Game.git`
 1. Configure the database connection to work with your database in the application.yml file [location: /src/main/resources/application.yml].
 Current configuration:
 ```yaml
 spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/cayetano_cards?createDatabaseIfNotExist=true
+    url: jdbc:mysql://localhost:3306/guess_card?createDatabaseIfNotExist=true
     username: root
     password: root
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
 ```
 2. Run `./gradlew build ` to build the application. Hibernate will create tables automatically (Only in MySQL, so if you are using PostgreSQL, Oracle or some other database, you must create first the database 'cayetano_cards' manually).
-3. Run application with: `java -jar ./build/libs/CayetanoCards-0.0.1-SNAPSHOT.jar ./src/main/java/com/cayetano/CayetanoCardsApplication.java`
+3. Run application with: `java -jar ./build/libs/GuessCard-0.0.1-SNAPSHOT.jar ./src/main/java/com/cayetano/guesscard/GuessCardApplication.java`
 4. Enter URL `http://localhost:8080` in the browser and PLAY!
 
 ## Play
