@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body>
+
+    <header th:replace="~{fragments/commons::header}"></header>
+
+    <main>
+        <h1 class="text-center mt-2">
+            <span class="badge badge-pill badge-dark">Deposit</span>
+        </h1>
+        <hr class="hr-3 w-25 bg-white" />
+
+        <form class="mx-auto w-25 bg-blur rounded" th:method="post" th:action="@{/card/cash-in}" th:object="${depositModel}">
+
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label for="cardNumber" class="h4 mb-2">Deposit Sum</label>
+                </div>
+
+                <input type="text" class="form-control" id="cardNUmber" th:field="*{amount}" th:errorclass="'is-invalid bg-danger'" />
+
+                <div class="invalid-feedback errors alert alert-danger">
+                    <div th:each="err : ${#fields.errors('amount')}" th:text="${err}">Invalid deposit sum</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label for="cvc" class="h4 mb-2">CVC</label>
+                </div>
+
+                <input type="text" class="form-control" id="cvc" th:field="*{cvc}" th:errorclass="'is-invalid bg-danger'" />
+
+                <div class="invalid-feedback errors alert alert-danger">
+                    <div th:each="err : ${#fields.errors('cvc')}" th:text="${err}">Invalid cvc</div>
+                </div>
+            </div>
+
+            <div class="button-holder d-flex justify-content-center">
+                <button type="submit" class="btn btn-warning  mb-3" value="Register">Add card</button>
+            </div>
+
+        </form>
+    </main>
+
+    <footer th:replace="~{fragments/commons::footer}"></footer>
+
+</body>
+
+</html>

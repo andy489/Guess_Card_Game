@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/commons::head}"></head>
+
+<body>
+
+    <header th:replace="~{fragments/commons::header}"></header>
+
+    <main>
+        <form th:method="post" th:action="@{/tasks/progress}">
+            <div class="container bg-blur rounded mt-1 mb-4">
+                <div class="row mt-1 mb-2">
+                    <div class="col-6 mt-1 mb-1">
+                        <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">My Card</h3>
+                        <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" th:text="'Name: '+${@currentUser.getFullName()}">
+                            Username: {username}
+                        </h6>
+                        <div class="bg-dark rounded m-auto p-5" style="height: 75.25vh; overflow: auto">
+                            <img th:src="@{${'/img/card/' + @currentGame.getPlayerCard()  + '.png'}}" class="col-9" alt="" />
+
+                            <div class="m-5 p-5 rounded">
+                                <a th:classappend="${@currentGame.getPlayerCard().toString()} != '00_Joker_of_Red'? 'btn-secondary' : 'btn-success'" th:href="@{/pull}" class="btn p-3 w-100 mt-3 font-weight-bold text-white border-white">
+                                PULL
+                            </a>
+                            </div>
+
+                            <div class="">
+                                <a th:href="@{/reset-game}" class="btn btn-secondary p-2 w-50 font-weight-bold text-white border-white">
+                                RESET GAME
+                            </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="pull bg-primary rounded text-left" th:text="'  Current balance:  ' + ${@currentGame.getBalance()} + ' FUN'">
+                            Balance: {fun} FUN
+                        </div>
+                    </div>
+
+
+                    <div class="col-6 mt-1 mb-1">
+                        <h3 class="mySticky bg-gray text-dark  mb-0 mt-2">Dealer's Card</h3>
+                        <h6 class="mySticky bg-gray text-dark  mb-0 mt-0" th:text="${#lists.size(@currentGame.getDeck())} + ' cards left in deck'">
+                            {remainingCards} cards left in deck
+                        </h6>
+                        <div class="bg-dark rounded m-auto p-5" style="height: 73vh; overflow: auto">
+                            <img th:src="@{${'/img/card/' + @currentGame.getDealerCard() + '.png'}}" class="col-9" alt="" />
+
+                            <div class="m-3 p-3">
+                                <a th:href="@{/gamble(prediction=over)}" class="btn btn-success p-3 w-100 mb-1 font-weight-bold text-white border-white">
+                                OVER
+                                <small th:if="${odds}!= null and ${@currentGame.getPlayerCard().numeral()} != '00_Joker'"
+                                       th:text="'  [ ' + ${#numbers.formatDecimal(odds.getOverChance(),1,2)} + '% ]'"></small>
+                            </a>
+                                <a th:href="@{/gamble(prediction=under)}" class="btn btn-success p-3 w-100 mt-2 font-weight-bold text-white border-white">
+                                UNDER
+                                <small th:if="${odds}!= null and ${@currentGame.getPlayerCard().numeral()} != '00_Joker'"
+                                       th:text="'  [ ' + ${#numbers.formatDecimal(odds.getUnderChance(),1,2)} + '% ]'"></small>
+                            </a>
+                            </div>
+
+                            <div class="row justify-content-center">
+                                <div th:each="c: ${T(com.cayetano.guesscard.model.enumerated.ChipEnum).values()}" th:id="'chip-' + ${c.getAsTxt()} + '-fun'" class="bet-chip ml-3 mr-3">
+                                    <a th:href="@{/bet/{chipId}(chipId = ${c.getAsTxt()})}">
+                                        <img th:src="@{'/img/chip/' + ${c.getImgName()} + '.png'}" style="width:4em" alt="">
+                                        <p th:text="${c.getAsTxt()} + ' FUN'">
+                                            {10} FUN
+                                        </p>
+                                    </a>
+                                </div>
+                            </div>
+
+
+                            <div class="">
+                                <a th:href="@{/clear-bet}" class="btn btn-secondary p-2 w-50 font-weight-bold text-white border-white">
+                                CLEAR BET
+                            </a>
+
+                            </div>
+
+                        </div>
+
+                        <div class="pull bg-warning rounded text-dark text-left" th:text="'  Last Win:  ' + ${@currentGame.getLastWin()} + ' FUN'">
+                            Last Win: {fun} FUN
+                        </div>
+
+                        <div class="pull bg-primary rounded text-left" th:text="'  Bet:  ' + ${@currentGame.getBet()} + ' FUN'">
+                            Bet: {fun} FUN
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </main>
+
+
+    <div id="confirm-message-container" th:classappend="${errorHelper?.hasError()} ? 'visible' : 'non-visible'">
+        <section id="message">
+            <ul>
+                <li class="hint-message" th:if="${errorHelper?.getMustDepositCheck()}">
+                    <b>Hint:</b>
+                    <span th:text="${errorHelper.getMustDeposit()}"></span>
+                </li>
+
+                <li class="hint-message" th:if="${errorHelper?.getMustPlaceBetCheck()}">
+                    <b>Hint:</b>
+                    <span th:text="${errorHelper.getMustPlaceBet()}"></span>
+                </li>
+
+                <li class="hint-message" th:if="${errorHelper?.getMustPullCardCheck()}">
+                    <b>Hint:</b>
+                    <span th:text="${errorHelper.getMustPullCard()}"></span>
+                </li>
+            </ul>
+        </section>
+
+        <ul id="button-list">
+            <li id="close-button">
+                <span>Close</span>
+            </li>
+        </ul>
+    </div>
+
+    <div id="dimmer" th:classappend="${errorHelper?.hasError()} ? 'visible' : 'non-visible'">
+    </div>
+
+    <footer th:replace="~{fragments/commons::footer}"></footer>
+
+</body>
+
+</html>
