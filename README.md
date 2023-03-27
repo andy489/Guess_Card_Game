@@ -1,6 +1,6 @@
 # Guess Card Game (WAR)
 
-Cayetano Cards is a simple gambling card game that resembles War or Baccarat but with one card each for the player and the dealer and no second draw under specific conditions. The aim of the game is to predict the outcome of whether the card that will draw the dealer is of a higher or lower face value than the card that drew the player.
+Guess Card is a simple card game that resembles War or Baccarat but with one card each for the player and the dealer and no second draw under specific conditions. The aim of the game is to predict the outcome of whether the card that will draw the dealer is of a higher or lower face value than the card that drew the player.
 
 The cards have the following values:
 - Aces are the strongest cards and are worth 14 points each. 
