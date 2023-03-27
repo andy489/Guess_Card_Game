@@ -10,7 +10,7 @@ The cards have the following values:
   
 Only the numerical value of each card matters in the main game. Any suit of cards (jacks, spades, spades or diamonds) is irrelevant.
 
-Initially, a card must be drawn from the deck of cards and a bet must be made in the dealer's section. You then have to guess whether the dealer's card will be of higher or lower value. If known - the bet is doubled. If you don't know - the bet is lost. In case of equal numerical values - the bet remains unchanged and is returned to the player's balance (in this case, you neither won nor lost, but the bet value is noted in the "last win" section). More information can be found in the documentation of the project/game here: [DOCUMENTATION](https://github.com/andy489/Cayetano_Cards_Game/blob/main/assets/Cayetano%20Cards%20Documentation.pdf) 
+Initially, a card must be drawn from the deck of cards and a bet must be made in the dealer's section. You then have to guess whether the dealer's card will be of higher or lower value. If known - the bet is doubled. If you don't know - the bet is lost. In case of equal numerical values - the bet remains unchanged and is returned to the player's balance (in this case, you neither won nor lost, but the bet value is noted in the "last win" section). More information can be found in the documentation of the project/game here: [DOCUMENTATION](https://github.com/andy489/Guess_Card_Game/blob/main/assets/Guess%20Card%20Documentation.pdf) 
   
 ## How to start the Game Server
 
@@ -33,7 +33,7 @@ spring:
 
 ## Play
 
-You can find more about the game flow in the [DOCUMENTATION](https://github.com/andy489/Cayetano_Cards_Game/blob/main/assets/Cayetano%20Cards%20Documentation.pdf) in section 7.
+You can find more about the game flow in the [DOCUMENTATION](https://github.com/andy489/Guess_Card_Game/blob/main/assets/Guess%20Card%20Documentation.pdf) in section 7.
 
 ENJOY!
 
