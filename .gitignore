@@ -184,7 +184,8 @@ build/
 .vscode/
 
 ### Additional
-*.DS_Store
+.DS_Store
+.Rhistory
 *.sw?
 .#*
 *#
