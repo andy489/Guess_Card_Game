@@ -1,12 +1,16 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.0.5'
-    id 'io.spring.dependency-management' version '1.1.0'
+    id 'org.springframework.boot' version '3.2.9'
+    id 'io.spring.dependency-management' version '1.1.6'
 }
 
 group = 'com.cayetano'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+
+java {
+    sourceCompatibility = '17'
+    targetCompatibility = '17'
+}
 
 repositories {
     mavenCentral()
@@ -16,11 +20,6 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
-
-    developmentOnly
-    runtimeClasspath {
-        extendsFrom developmentOnly
-    }
 }
 
 dependencies {
@@ -29,13 +28,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     compileOnly 'org.projectlombok:lombok'
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
     runtimeOnly 'com.mysql:mysql-connector-j'
     annotationProcessor 'org.projectlombok:lombok'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
-    implementation 'org.springframework.security:spring-security-crypto:6.0.2'
-    implementation 'org.mapstruct:mapstruct:1.5.3.Final'
-    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.3.Final'
-    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    implementation 'org.springframework.security:spring-security-crypto:6.2.1'
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
 }
 
 tasks.named('test') {

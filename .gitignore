@@ -204,3 +204,20 @@ README.html
 *.iml
 .idea
 .exercism
+
+### Environment Files ###
+# Ignore .env files at all directory levels
+.env
+**/.env
+**/.env.*
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.dev
+.env.test
+.env.prod
+.env.stage
+.env.example
+.env.sample
+.env.template
