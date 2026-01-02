@@ -188,7 +188,6 @@ public final class HomeController extends GenericController {
                 win = gameEntity.getBet().multiply(new BigDecimal("0"));
             }
         } else {
-            // WE CAN MULTIPLY BET BY CORRESPONDING TO ODDS [NOT DESCRIBED IN TASK CONDITION]
             return super.view("home");
         }
 

@@ -29,8 +29,8 @@ public final class CardController extends GenericController {
     public CardController(
             CardService cardService,
             UserService userService,
-            CurrentUser currentUser
-    ) {
+            CurrentUser currentUser) {
+
         this.cardService = cardService;
         this.userService = userService;
         this.currentUser = currentUser;
@@ -76,8 +76,8 @@ public final class CardController extends GenericController {
     public ModelAndView postAddCard(
             @Valid @ModelAttribute(name = "cardAddModel") CardAddDto cardAddDto,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes
-    ) {
+            RedirectAttributes redirectAttributes) {
+
         if (!currentUser.isLoggedIn()) {
             return super.redirect("/user/login");
         }
@@ -107,8 +107,8 @@ public final class CardController extends GenericController {
     public ModelAndView postAddCash(
             @Valid @ModelAttribute(name = "depositModel") DepositDto depositDto,
             BindingResult bindingResult,
-            RedirectAttributes redirectAttributes
-    ) throws JsonProcessingException {
+            RedirectAttributes redirectAttributes) throws JsonProcessingException {
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("depositModel", depositDto);
             redirectAttributes.addFlashAttribute("org.springframework.validation.BindingResult.depositModel", bindingResult);
