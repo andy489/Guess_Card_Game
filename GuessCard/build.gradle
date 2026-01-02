@@ -42,3 +42,7 @@ tasks.named('test') {
 }
 
 // npx kill-port 8080
+
+// Run:
+// docker-compose up -d
+// docker-compose down
